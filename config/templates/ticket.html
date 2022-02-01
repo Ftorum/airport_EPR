@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+{% for ticket in tickets %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{%static 'img/plane.jpg'%}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Flight direction: {{ticket.flight_id.destinations}}</h5>
+        <p class="card-text">Seats number: <b>{{ticket.seats_number}}</b></p>
+        <p class="card-text">Price: <b>{{ticket.price}}</b></p>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-primary" href="{%url 'add_ticket' ticket.id%}" role="button">Buy a ticket</a>
+</div>
+<br>
+{% endfor %}
+{%endblock%}

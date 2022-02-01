@@ -1,0 +1,73 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DjangoAir ERP system</title>
+    <!-- <link rel="stylesheet" href="{%static 'css/bulma.min.css'%}"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      
+  </head>
+  <body>
+    <div class="container">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+  
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+
+          {% if user.is_authenticated and user.passenger.role == 'Passanger' %}
+          <li><a href="{%url 'index' %}" class="nav-link px-2 link-dark">Flights</a></li>
+          <li><a href="{%url 'orders'%}" class="nav-link px-2 link-dark">Booked flights</a></li>
+          {%endif%}
+          {% if user.is_authenticated and user.passenger.role == 'Gate_manager' %}
+          <li><a href="{%url 'purchases' %}" class="nav-link px-2 link-dark">Find and edit status</a></li>
+          {%endif%}
+          {% if user.is_authenticated and user.passenger.role == 'Check_in_manager' %}
+          <li><a href="{%url 'purchases' %}" class="nav-link px-2 link-dark">Find and edit status</a></li>
+          <li><a href="{%url 'options'%}" class="nav-link px-2 link-dark">Edit options</a></li>
+          {%endif%}
+          {% if user.is_authenticated and user.passenger.role == 'Supervisor' %}
+          <li><a href="{%url 'index' %}" class="nav-link px-2 link-dark">Flights</a></li>
+          <li><a href="{%url 'purchases' %}" class="nav-link px-2 link-dark">Find and edit status</a></li>
+          <li><a href="{%url 'options'%}" class="nav-link px-2 link-dark">Edit options</a></li>
+          <li><a href="{%url 'employes'%}" class="nav-link px-2 link-dark">Manage roles</a></li>
+          <li><a href="" class="nav-link px-2 link-dark">Manage flights</a></li>
+          {%endif%}
+        </ul>
+  
+        <div class="col-md-3 text-end">
+          {% if user.is_authenticated%}
+          <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary me-2">Logout</button></a>
+          <a href="{%url 'shopcard' %}"><button type="button" class="btn btn-outline-primary me-2">Shop Card</button></a>
+          {%else%}
+          <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
+          <a href="{% url 'signup' %}"><button type="button" class="btn btn-primary">Sign-up</button></a>
+          {%endif%}
+
+
+        </div>
+      </header>
+
+    </div>
+
+    <main class="container">
+      <div class="bg-light p-5 rounded">
+        {%block content%}
+        {%endblock%}
+
+
+        {%block pagination%}
+        {%endblock%}
+      </div>
+    </main>
+
+  </body>
+  
+</html>

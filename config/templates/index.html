@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+{% if user.is_authenticated and user.passenger.role == 'Supervisor' %}
+<div>
+<a class="btn btn-primary" href="{%url 'create_flight'%}" role="button">Create Flight</a>
+</div>
+{%endif%}
+<br>
+{% for flight in flights %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{%static 'img/plane.jpg'%}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Flight number: {{flight.number}}</h5>
+        <p class="card-text">Way: <b>{{flight.destinations}}</b></p>
+        <p class="card-text">Gate: {{flight.gate}}</p>
+        <p class="card-text">Flight status: {{flight.flight_status}}</p>
+        <p class="card-text">Flight date: {{flight.date}}</p>
+        <p class="card-text">Airplane: {{flight.airplane_id.name}}</p>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-primary" href="{%url 'ticket' flight.id%}" role="button">Check avaliable tickets</a>
+
+  {% if user.is_authenticated and user.passenger.role == 'Supervisor' %}
+  <br>
+  <div><a class="btn btn-primary" href="{%url 'edit_flight' flight.id%}" role="button">Edit flight</a></div>
+  {%endif%}
+  
+</div>
+<br>
+{% endfor %}
+{%endblock%}

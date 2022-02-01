@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+{% for element in shopcard %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{%static 'img/plane.jpg'%}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Flight direction: {{element.ticket_id.flight_id.destinations}}</h5>
+        <h5 class="card-title">Amount: {{element.quantity}}</h5>
+      </div>
+    </div>
+    <a class="btn btn-primary" href="{%url 'delete_from_card' element.id%}" role="button">Delete item</a>
+    </div>
+    </div>
+<br>
+{% endfor %}
+<p class="card-text">Total Price: <b>{{total}}</b></p>
+</div>
+<a class="btn btn-primary" href="{%url 'order'%}" role="button">To Purchase</a>
+</div>
+{%endblock%}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+
+{% for employe in employes %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{%static 'img/emp.png'%}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <p class="card-text">First Name: <b>{{employe.first_name}}</b></p>
+        <p class="card-text">Last Name: <b>{{employe.last_name}}</b></p>
+        <p class="card-text">Tole: <b>{{employe.role}}</b></p>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-primary" href="{%url 'edit_role' employe.id%}" role="button">Change role</a>
+</div>
+<br>
+{% endfor %}
+{%endblock%}

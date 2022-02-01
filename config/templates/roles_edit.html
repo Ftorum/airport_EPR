@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+<form method='post' role="form">
+  {% csrf_token %}
+    <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title">First name: {{passanger.first_name}}</h5>
+            <h5 class="card-title">Last Name: {{passanger.last_name}}</h5>
+            {{form.role}}
+        </div>
+      </div>
+        <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+    <p class="control">
+      <br>
+      <button type="submit" class="btn btn-success">
+        Save changes
+      </button>
+      </p>
+  </form>
+<br>
+
+{%endblock%}

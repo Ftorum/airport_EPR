@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+<form method='post' role="form">
+  {% csrf_token %}
+    <div class="col-md-8">
+        <div class="card-body">
+            <p>Number of flight ({{flight.number}}) {{form.number}}</p>
+            <p>Destination ({{flight.destinations}}) {{form.destinations}}</p>
+            <p>Gate ({{flight.gate}}) {{form.gate}}</p>
+            <p>Status ({{flight.flight_status}}) {{form.flight_status}}</p>
+            <p>Date ({{flight.date}}) {{form.date}}</p>
+            <p>Airplane ({{flight.airplane_id}}) {{form.airplane_id}}</p>
+        </div>
+      </div>
+        <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+    <p class="control">
+      <br>
+      <button type="submit" class="btn btn-success">
+        Save changes
+      </button>
+      </p>
+  </form>
+<br>
+
+{%endblock%}

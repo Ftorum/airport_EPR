@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+<form method='post' role="form">
+    <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Flight destination: {{ticket.flight_id.destinations}}</h5>
+          <p class="card-text">Price: <b>{{ticket.price}}</b></p>
+        </div>
+      </div>
+    {% csrf_token %}
+    {{form.quantity}}
+        <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+    <p class="control">
+      <br>
+      <button type="submit" class="btn btn-success">
+        Add to ShopCard
+      </button>
+      </p>
+  </form>
+<br>
+
+{%endblock%}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+<h3>Ordered Tickets</h3>
+{% for order in orders %}
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+        <img src="{%static 'img/plane.jpg'%}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title">Flight direction: {{order.ticket.flight_id.destinations}}</h5>
+            <h5 class="card-title">Passenger: {{order.user.first_name}}</h5>
+            <h5 class="card-title">Price: {{order.price}} $</h5>
+            <h5 class="card-title">Quantity: {{order.quantity}}</h5>
+            <h5 class="card-title">Total amount: {{order.amount}} $</h5>
+            <h5 class="card-title">Status: {{order.status}}</h5>
+            <br>
+            <a class="btn btn-primary" href="{%url 'edit_status' order.id%}" role="button">Edit Status</a>
+        </div>
+        
+    </div>
+    </div>
+    </div>
+
+{% endfor %}
+{%endblock%}

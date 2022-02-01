@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+{% for order in orders %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{%static 'img/plane.jpg'%}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Order: {{order.order}}</h5>
+        <h5 class="card-title">Passenger: {{order.user}}</h5>
+        <h5 class="card-title">Ticket: {{order.ticket}}</h5>
+        <h5 class="card-title">Status: {{order.ticket.flight_id.flight_status}}</h5>
+        <h5 class="card-title">Quantity: {{order.quantity}}</h5>
+        <h5 class="card-title">Price: {{order.price}}</h5>
+        <h5 class="card-title">Total amount: {{order.amount}}</h5>
+      </div>
+    </div>
+    </div>
+    </div>
+<br>
+{% endfor %}
+
+{%endblock%}

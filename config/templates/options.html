@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%}
+{% for option in options %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{%static 'img/plane.jpg'%}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Option ticket_id: {{option.ticket_id}}</h5>
+        <p class="card-text">Option user_id: <b>{{option.user_id}}</b></p>
+        <p class="card-text">Lunch: <b>{{option.lunch}}</b></p>
+        <p class="card-text">Luggage: <b>{{option.luggage}}</b></p>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-primary" href="{%url 'edit_option' option.id%}" role="button">Edit Option</a>
+</div>
+<br>
+{% endfor %}
+{%endblock%}
